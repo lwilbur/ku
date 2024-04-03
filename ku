@@ -1,0 +1,24 @@
+#!/bin/bash
+
+if ! command -v xxd &> /dev/null
+then
+    echo "Install xxd."
+    exit 1
+fi
+
+if ! command -v python3 &> /dev/null
+then
+    echo "Install python3."
+    exit 1
+fi
+
+if [ "$EUID" != 0 ]
+    then 
+        echo "Run as root."
+        exit 1
+fi
+
+# Ku
+ku=`echo 68747470733a2f2f7777772e6e7974696d65732e636f6d2f70757a7a6c65732f7375646f6b75 | xxd -r -p`
+python3 -m webbrowser "$ku"
+
